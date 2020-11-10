@@ -1,10 +1,11 @@
 // DEPENDENCIES;
-// =============
+// =============:
 const express = require("express");
 const burger = require("../models/burger.js");
 const router = express.Router();
 
-// Create all our routes and set up logic within those routes where required.
+// Routes;
+// =============:
 router.get("/", function (req, res) {
 	burger.all(function (data) {
 		var hbsObject = {
@@ -19,7 +20,7 @@ router.post("/api/burgers", function (req, res) {
 	burger.create(["name", "eaten"], [req.body.name, req.body.eaten], function (
 		result
 	) {
-		// Send back the ID of the new quote
+		// Send back the ID of the new burger
 		res.json({ id: result.insertId });
 	});
 });

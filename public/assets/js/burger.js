@@ -1,4 +1,9 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded.
+// *********************
+// DOM Handlers;
+// *********************
+
+// Devoured;
+// =============:
 $(function () {
 	$(".devour").on("click", function (event) {
 		var id = $(this).data("id");
@@ -8,13 +13,13 @@ $(function () {
 			devoured: justDevoured,
 		};
 
-		// Send the PUT request.
+		// - PUT Request;
 		$.ajax("/api/burgers/" + id, {
 			type: "PUT",
 			data: devouredState,
 		}).then(function () {
 			console.log("changed eaten to", justDevoured);
-			// Reload the page to get the updated list
+			// - Reload the page/update list;
 			location.reload();
 		});
 	});
