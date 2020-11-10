@@ -1,0 +1,29 @@
+li {
+	padding: 5px;
+	margin: 5px;
+	background: lemonchiffon;
+}
+body {
+	background: #ffcc66;
+	background-size: cover;
+}
+.label {
+	font-weight: bold;
+}
+.create-update-form {
+	padding: 5px;
+	margin: 5px;
+	background: aqua;
+}
+.form-group {
+	margin-bottom: 5px;
+}
+h1,
+h2 {
+	color: white !;
+}
+.burger-image {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
