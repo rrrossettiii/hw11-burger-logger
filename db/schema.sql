@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS hmu73ykpml5lss96
+DROP DATABASE IF EXISTS hmu73ykpml5lss96;
 -- Create & Use Database --
 CREATE DATABASE hmu73ykpml5lss96;
 USE hmu73ykpml5lss96;
