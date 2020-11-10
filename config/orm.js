@@ -2,8 +2,6 @@
 const connection = require("./connection");
 
 // Helper function for SQL syntax.
-// To pass 3 values into mySQL query, we need 3 question marks
-// The above helper function loops through and creates array of question marks and generates a string
 function printQuestionMarks(num) {
 	var arr = [];
 
@@ -13,6 +11,7 @@ function printQuestionMarks(num) {
 
 	return arr.toString();
 }
+// The above helper function loops through and creates array of question marks and generates a string;
 
 // Helper function to convert pairs to SQL syntax
 function objToSql(ob) {
@@ -21,7 +20,7 @@ function objToSql(ob) {
 	// loop through var keys and push string int arr
 	for (var key in ob) {
 		var value = ob[key];
-		// check to skip hidden properties
+		// - skip hidden properties
 		if (Object.hasOwnProperty.call(ob, key)) {
 			// if string contains any spaces, insert quotations around title
 			if (typeof value === "string" && value.indexOf(" ") >= 0) {
@@ -35,9 +34,9 @@ function objToSql(ob) {
 	return arr.toString();
 }
 
-// orm for all SQL statements
+// ORM for all SQL statements;
 var orm = {
-	// SELECT
+	// - SELECT;
 	selectAll: function (tableInput, cb) {
 		var queryString = "SELECT * FROM " + tableInput + ";";
 		connection.query(queryString, function (err, result) {
@@ -47,34 +46,33 @@ var orm = {
 			cb(result);
 		});
 	},
-	// INSERT
-	insert: function (table, cols, vals, cb) {
+	// - INSERT;
+	insert: function (table, cols, values, cb) {
 		var queryString = "INSERT INTO " + table;
 
 		queryString += " (";
 		queryString += cols.toString();
 		queryString += ") ";
 		queryString += "VALUES (";
-		queryString += printQuestionMarks(vals.length);
+		queryString += printQuestionMarks(values.length);
 		queryString += ") ";
 
 		console.log(queryString);
 
-		connection.query(queryString, vals, function (err, result) {
+		connection.query(queryString, values, function (err, result) {
 			if (err) {
 				throw err;
 			}
 			cb(result);
 		});
 	},
-	// An example of this would be [[name: turkey burger, devoured: not true]]
 
-	// UPDATE
-	update: function (table, objColVals, condition, cb) {
-		var queryString = "UPDATE " + table;
+	// - UPDATE;
+	update: function (table, objColValues, condition, cb) {
+		let queryString = "UPDATE " + table;
 
 		queryString += " SET ";
-		queryString += objToSql(objColVals);
+		queryString += objToSql(objColValues);
 		queryString += " WHERE ";
 		queryString += condition;
 
@@ -86,9 +84,9 @@ var orm = {
 			cb(result);
 		});
 	},
-	// DELETE
+	// - DELETE;
 	delete: function (table, condition, cb) {
-		var queryString = "DELETE FROM " + table;
+		let queryString = "DELETE FROM " + table;
 		queryString += " WHERE ";
 		queryString += condition;
 
@@ -100,6 +98,5 @@ var orm = {
 		});
 	},
 };
-
-// Export the orm object for model
+// - Export to models: (burger.js);
 module.exports = orm;
