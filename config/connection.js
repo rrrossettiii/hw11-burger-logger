@@ -6,8 +6,8 @@ const connection = mysql.createConnection({
 	host: "localhost",
 	port: 3306,
 	user: "root",
-	password: "columbiaUniversity",
-	database: "burger_db",
+	password: process.env.LOCAL_PASSWORD,
+	database: "",
 });
 // -on connect;
 connection.connect(function (err) {

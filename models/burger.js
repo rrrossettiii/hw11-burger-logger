@@ -1,10 +1,10 @@
 // Import ORM;
-const orm = require("../config/orm.js");
+var orm = require("../config/orm.js");
 
 // Burger;
-const burger = {
+var burger = {
 	selectAll: function (cb) {
-		orm.all("burgers", function (res) {
+		orm.selectAll("burgers", function (res) {
 			cb(res);
 		});
 	},

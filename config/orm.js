@@ -1,5 +1,5 @@
 // Import MySQL connection.
-const connection = require("./connection");
+var connection = require("./connection");
 
 // Helper function for SQL syntax.
 function printQuestionMarks(num) {
@@ -47,14 +47,14 @@ var orm = {
 		});
 	},
 	// - INSERT;
-	insert: function (table, cols, values, cb) {
+	create: function (table, cols, vals, cb) {
 		var queryString = "INSERT INTO " + table;
 
 		queryString += " (";
 		queryString += cols.toString();
 		queryString += ") ";
 		queryString += "VALUES (";
-		queryString += printQuestionMarks(values.length);
+		queryString += printQuestionMarks(vals.length);
 		queryString += ") ";
 
 		console.log(queryString);
@@ -68,11 +68,11 @@ var orm = {
 	},
 
 	// - UPDATE;
-	update: function (table, objColValues, condition, cb) {
-		let queryString = "UPDATE " + table;
+	update: function (table, objColVals, condition, cb) {
+		var queryString = "UPDATE " + table;
 
 		queryString += " SET ";
-		queryString += objToSql(objColValues);
+		queryString += objToSql(objColVals);
 		queryString += " WHERE ";
 		queryString += condition;
 
@@ -86,7 +86,7 @@ var orm = {
 	},
 	// - DELETE;
 	delete: function (table, condition, cb) {
-		let queryString = "DELETE FROM " + table;
+		var queryString = "DELETE FROM " + table;
 		queryString += " WHERE ";
 		queryString += condition;
 

@@ -1,20 +1,16 @@
 // DEPENDENCIES;
 // =============
 require("dotenv").config();
-const express = require("express");
-const expressHB = require("express-handlebars");
-const routes = require("./controllers/burgerController.js");
+var express = require("express");
+var expressHB = require("express-handlebars");
+var routes = require("./controllers/burgers_controller");
 
 // - PORT;
-const PORT = process.env.PORT || 3000;
-// - listener
-app.listen(PORT, function () {
-	console.log("Server listening on: http://localhost:" + PORT);
-});
+var PORT = process.env.PORT || 3000;
 
 // Express;
 // =============
-const app = express();
+var app = express();
 // - Express data parsing;
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
@@ -24,3 +20,8 @@ app.engine("handlebars", expressHB({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 // - ROUTES;
 app.use(routes);
+
+// - listener
+app.listen(PORT, function () {
+	console.log("Server listening on: http://localhost:" + PORT);
+});

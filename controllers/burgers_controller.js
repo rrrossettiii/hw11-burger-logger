@@ -1,13 +1,13 @@
 // DEPENDENCIES;
 // =============:
-const express = require("express");
-const burger = require("../models/burger.js");
-const router = express.Router();
+var express = require("express");
+var burger = require("../models/burger.js");
+var router = express.Router();
 
 // Routes;
 // =============:
 router.get("/", function (req, res) {
-	burger.all(function (data) {
+	burger.selectAll(function (data) {
 		var hbsObject = {
 			burgers: data,
 		};
@@ -16,15 +16,21 @@ router.get("/", function (req, res) {
 	});
 });
 
+// POST;
+// =============:
 router.post("/api/burgers", function (req, res) {
-	burger.create(["name", "eaten"], [req.body.name, req.body.eaten], function (
-		result
-	) {
-		// Send back the ID of the new burger
-		res.json({ id: result.insertId });
-	});
+	burger.create(
+		["name", "devoured"],
+		[req.body.name, req.body.devoured],
+		function (result) {
+			// - Send back ID;
+			res.json({ id: result.insertId });
+		}
+	);
 });
 
+// PUT;
+// =============:
 router.put("/api/burgers/:id", function (req, res) {
 	var condition = "id = " + req.params.id;
 
@@ -32,7 +38,7 @@ router.put("/api/burgers/:id", function (req, res) {
 
 	burger.update(
 		{
-			eaten: req.body.eaten,
+			eaten: req.body.devoured,
 		},
 		condition,
 		function (result) {
@@ -46,6 +52,8 @@ router.put("/api/burgers/:id", function (req, res) {
 	);
 });
 
+// Delete;
+// =============:
 router.delete("/api/burgers/:id", function (req, res) {
 	var condition = "id = " + req.params.id;
 

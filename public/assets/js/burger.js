@@ -18,7 +18,7 @@ $(function () {
 			type: "PUT",
 			data: devouredState,
 		}).then(function () {
-			console.log("changed eaten to", justDevoured);
+			console.log("changed devouredState to", justDevoured);
 			// - Reload the page/update list;
 			location.reload();
 		});
@@ -30,7 +30,7 @@ $(function () {
 		event.preventDefault();
 
 		var newBurger = {
-			name: $("bn").val().trim(),
+			name: $("#bn").val().trim(),
 			eaten: $("[name=devoured]:checked").val().trim(),
 		};
 
