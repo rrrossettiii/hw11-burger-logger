@@ -5,9 +5,9 @@
 // Devoured;
 // =============:
 $(function () {
-	$(".devour").on("click", function (event) {
+	$(".devoured").on("click", function (event) {
 		var id = $(this).data("id");
-		var justDevoured = $(this).data("justDevoured");
+		var justDevoured = $(this).data("justdevoured");
 
 		var devouredState = {
 			devoured: justDevoured,

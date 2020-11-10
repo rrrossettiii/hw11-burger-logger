@@ -1,6 +1,7 @@
+DROP DATABASE IF EXISTS hmu73ykpml5lss96
 -- Create & Use Database --
-CREATE DATABASE IF NOT EXISTS burger_db;
-USE burger_db;
+CREATE DATABASE hmu73ykpml5lss96;
+USE hmu73ykpml5lss96;
 
 -- Create Table --
 CREATE TABLE burgers
@@ -10,6 +11,3 @@ CREATE TABLE burgers
 	devoured BOOLEAN DEFAULT false,
 	PRIMARY KEY (id)
 );
-
--- View Table --
-SELECT * FROM burgers;
