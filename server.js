@@ -3,7 +3,7 @@
 require("dotenv").config();
 var express = require("express");
 var expressHB = require("express-handlebars");
-var routes = require("./controllers/burgerController.js");
+var router = require("./controllers/burgerController.js");
 
 // - PORT;
 var PORT = process.env.PORT || 8080;
@@ -19,9 +19,9 @@ app.use(express.json());
 app.engine("handlebars", expressHB({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 // - ROUTES;
-app.use(routes);
+app.use(router);
 
 // - listener
 app.listen(PORT, function () {
-	console.log("Server listening on: http://localhost:" + PORT);
+  console.log("Server listening on: http://localhost:" + PORT);
 });
