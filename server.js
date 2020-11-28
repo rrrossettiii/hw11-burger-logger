@@ -1,24 +1,24 @@
 // DEPENDENCIES;
 // =============
 require("dotenv").config();
-var express = require("express");
-var expressHB = require("express-handlebars");
-var router = require("./controllers/burgerController.js");
+const express = require("express");
+const expressHB = require("express-handlebars");
 
 // - PORT;
-var PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 
 // Express;
 // =============
-var app = express();
+const app = express();
 // - Express data parsing;
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 //  - Express-Handlebars;
 app.engine("handlebars", expressHB({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 // - ROUTES;
+var router = require("./controllers/burgerController.js");
 app.use(router);
 
 // - listener

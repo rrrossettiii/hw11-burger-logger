@@ -6,17 +6,17 @@
 // =============:
 $(function () {
 	$(".devoured").on("click", function (event) {
-		var id = $(this).data("id");
-		var justDevoured = $(this).data("justdevoured");
-
-		var devouredState = {
-			devoured: justDevoured,
+		const id = $(this).data("id");
+		const justDevoured = $(this).data("devoured");
+		const devouredState = {
+			devoured: justDevoured
 		};
 
 		// - PUT Request;
-		$.ajax("/api/burgers/" + id, {
+		let currentURL = window.location.origin;
+		$.ajax(currentURL + "/api/burgers/devoured" + id, {
 			type: "PUT",
-			data: devouredState,
+			data: devouredState
 		}).then(function () {
 			console.log("changed devouredState to", justDevoured);
 			// - Reload the page/update list;
@@ -29,16 +29,16 @@ $(function () {
 	$(".create-form").on("submit", function (event) {
 		event.preventDefault();
 
-		var newBurger = {
-			name: $("#bn").val().trim(),
-			eaten: $("[name=devoured]:checked").val().trim(),
+		const newBurger = {
+			burger_name: $("#burger-name").val().trim(),
+			devoured: $("[name=devoured]:checked").val().trim()
 		};
 
 		// POST Request;
 		// =============:
 		$.ajax("/api/burgers", {
 			type: "POST",
-			data: newBurger,
+			data: newBurger
 		}).then(function () {
 			console.log("created new burger");
 			// - Reload the page/update list;
@@ -52,9 +52,10 @@ $(function () {
 		// DELETE Request;
 		// =============:
 		$.ajax("/api/burgers/" + id, {
-			type: "DELETE",
+			type: "DELETE"
 		}).then(function () {
 			console.log("deleted burger", id);
+			$(".devoured-burger" + id).remove();
 			// - Reload the page/update list;
 			location.reload();
 		});
