@@ -14,7 +14,7 @@ $(function () {
 
 		// - PUT Request;
 		let currentURL = window.location.origin;
-		$.ajax(currentURL + "/api/burgers/devoured" + id, {
+		$.ajax(currentURL + "/api/burgers/" + id, {
 			type: "PUT",
 			data: devouredState
 		}).then(function () {

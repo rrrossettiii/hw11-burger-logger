@@ -11,7 +11,6 @@ router.get("/", function (req, res) {
 		const hbsObject = {
 			burgers: data
 		};
-		// console.log(hbsObject);
 		res.render("index", hbsObject);
 	});
 });
@@ -19,26 +18,35 @@ router.get("/", function (req, res) {
 // POST;
 // =============:
 router.post("/api/burgers", function (req, res) {
-	burger.create(req.body.burger_name, function (result) {
-		console.log(result);
-		res.json(result);
-	});
+	burger.create(
+		["burger_name", "devoured"],
+		[req.body.burger_name, req.body.devoured],
+		function (result) {
+			console.log(result);
+			res.json(result);
+		}
+	);
 });
 
 // PUT;
 // =============:
 router.put("/api/burgers/:id", function (req, res) {
 	const condition = "id = " + req.params.id;
-	const boolean = req.body.devoured;
 
-	burger.update(boolean, condition, function (result) {
-		if (result.changedRows == 0) {
-			// If no rows were changed, then the ID must not exist, so 404
-			return res.status(404).end();
-		} else {
-			res.status(200).end();
+	burger.update(
+		{
+			devoured: req.body.devoured
+		},
+		condition,
+		function (result) {
+			if (result.changedRows == 0) {
+				// If no rows were changed, then the ID must not exist, so 404
+				return res.status(404).end();
+			} else {
+				res.status(200).end();
+			}
 		}
-	});
+	);
 });
 
 // Delete;
