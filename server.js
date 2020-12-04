@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 8080;
 // =============
 const app = express();
 // - Express data parsing;
-app.use(express.static(__dirname + "/public"));
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 //  - Express-Handlebars;
@@ -23,5 +23,5 @@ app.use(router);
 
 // - listener
 app.listen(PORT, function () {
-  console.log("Server listening on: http://localhost:" + PORT);
+	console.log("Server listening on: http://localhost:" + PORT);
 });
